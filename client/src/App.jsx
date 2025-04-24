@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Get from "./components/Get"
 import Create from "./components/Create"
+import Card from "./components/Card";
 
 
 function App() {
@@ -12,9 +12,7 @@ function App() {
     .then((res) => setData(res.data))
     .catch((error) => console.log(error));
   }
-
   useEffect(() => {
-    console.log("initialized log from get")
     refreshData()
   }, []);
  
@@ -22,7 +20,7 @@ function App() {
   return (
     <>
      <Create refreshData={refreshData}/>
-     <Get  refreshData={refreshData} data={data}/>
+     <Card data={data} refreshData={refreshData}/>
     </>
   )
 }
