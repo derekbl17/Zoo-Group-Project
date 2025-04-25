@@ -33,30 +33,30 @@ const Create = ({refreshData,data}) => {
         });
     };
   return (
-    <div>
-        <h3>Add animal</h3>
+    <div className='addContainer'>
         <form onSubmit={handleSubmit}>
+            <h2>Add animal</h2>
             <div>
-                <label>Gyvūno pavadinimas</label>
-                <input type="text" name="gyvūnoPav" value={values.gyvūnoPav} onChange={handleChange}/>
+                <label>Name</label>
+                <input className='formInput' type="text" name="gyvūnoPav" value={values.gyvūnoPav} onChange={handleChange}/>
             </div>
             <div>
-                <label>Rūšis</label>
-                <input type="text" name="rūšis" value={values.rūšis} onChange={handleChange}/>
+                <label>Type</label>
+                <input className='formInput' type="text" name="rūšis" value={values.rūšis} onChange={handleChange}/>
             </div>
             <div>
-                <label>Svoris</label>
-                <input type="number" name="svoris" step="any" value={values.svoris} onChange={handleChange}/>
+                <label>Weight</label>
+                <input className='formInput' type="number" name="svoris" step="any" value={values.svoris} onChange={handleChange}/>
             </div>
             <div>
-                <label>Aplinka(Habitat)</label>
-                <input type="text" name="aplinka" value={values.aplinka} onChange={handleChange}/>
+                <label>Habitat</label>
+                <input className='formInput' type="text" name="aplinka" value={values.aplinka} onChange={handleChange}/>
             </div>
-            <div>
-                <label>Gyvena Lietuvoje</label>
-                <input type="checkbox" name="gyvenaLietuvoje" checked={values.gyvenaLietuvoje} onChange={handleChange}/>
+            <div className='checkBox-container'>
+                <label>Lives in Lithuania</label>
+                <input className='formInput checkBox' type="checkbox" name="gyvenaLietuvoje" checked={values.gyvenaLietuvoje} onChange={handleChange}/>
             </div>
-            <button type='submit'>submit</button>
+            <button className='submit' type='submit'>submit</button>
         </form>
     </div>
   )

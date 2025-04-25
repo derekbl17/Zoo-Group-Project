@@ -25,7 +25,7 @@ const Card = ({ data, refreshData }) => {
 
               <button onClick={() => setEditingId(animal.id)}>Edit</button>
               
-              <Delete id={animal.id} onDelete={refreshData} />
+              <Delete id={animal.id} onDelete={refreshData} gyvūnoPav={animal.gyvūnoPav} />
             </>
           )}
         </div>
