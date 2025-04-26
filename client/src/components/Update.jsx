@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Update = ({ onUpdate, initialData, onClose }) => {
   const [animalData, setAnimalData] = useState(initialData);
@@ -11,6 +12,7 @@ const Update = ({ onUpdate, initialData, onClose }) => {
       .put(`http://localhost:5000/updateAnimal/${initialData.id}`, animalData)
       .then((res) => {
         onUpdate();
+        SuccessfullEdit(initialData.gyvūnoPav);
         onClose();
       })
       .catch((error) => {
@@ -26,10 +28,15 @@ const Update = ({ onUpdate, initialData, onClose }) => {
     }));
   };
 
+  function SuccessfullEdit(gyvūnoPav){
+    Swal.fire(`Successfully edited ${gyvūnoPav}!`, '', 'success')
+
+  }
+
   return (
     <form onSubmit={handleSubmit} className="update-form">
-      <div>
-        <label>Gyvūno pavadinimas:</label>
+      <div className="row">
+        <label>Name:</label>
         <input
           type="text"
           name="gyvūnoPav"
@@ -37,8 +44,8 @@ const Update = ({ onUpdate, initialData, onClose }) => {
           onChange={handleChange}
         />
       </div>
-      <div>
-        <label>Rūšis:</label>
+      <div className="row">
+        <label>Type:</label>
         <input
           type="text"
           name="rūšis"
@@ -46,8 +53,8 @@ const Update = ({ onUpdate, initialData, onClose }) => {
           onChange={handleChange}
         />
       </div>
-      <div>
-        <label>Svoris:</label>
+      <div className="row">
+        <label>Weight:</label>
         <input
           type="number"
           name="svoris"
@@ -55,8 +62,8 @@ const Update = ({ onUpdate, initialData, onClose }) => {
           onChange={handleChange}
         />
       </div>
-      <div>
-        <label>Aplinka:</label>
+      <div className="row">
+        <label>Habitat:</label>
         <input
           type="text"
           name="aplinka"
@@ -64,8 +71,8 @@ const Update = ({ onUpdate, initialData, onClose }) => {
           onChange={handleChange}
         />
       </div>
-      <div>
-        <label>Gyvena Lietuvoje:</label>
+      <div className="row">
+        <label>Lives in Lithuania:</label>
         <input
           type="checkbox"
           name="gyvenaLietuvoje"

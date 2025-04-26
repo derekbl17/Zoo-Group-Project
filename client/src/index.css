@@ -1,3 +1,6 @@
+*{
+  box-sizing: border-box;
+}
 .card {
   padding: 1rem;
   margin: 1rem 0;
@@ -51,4 +54,61 @@ button + button {
 
 button + button:hover {
   background-color: #5a6268;
+}
+header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #46afaa;
+}
+.addContainer{
+  background-color: #9be1af;
+}
+form {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-family:Arial Black;
+  color: #333;
+}
+.formInput{
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border 0.3s ease;
+}
+.submit{
+  display: block;
+  margin: 0 auto;
+}
+.checkBox{
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  vertical-align: middle; 
+}
+.checkBox-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1{
+  font-family:Arial Black;
+  color: #f9f9f9; 
+}
+.cardContainer{
+  background-color: #557882;
+  padding-left: 10px;
+  padding-right: 10px;
 }

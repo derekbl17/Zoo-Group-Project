@@ -19,8 +19,14 @@ function App() {
 
   return (
     <>
+    <header>
+      <h1>Zoo Crud</h1>
+    </header>
      <Create refreshData={refreshData}/>
-     <Card data={data} refreshData={refreshData}/>
+     <div className="cardContainer">
+      {/* filtravimas, paieska */}
+      <Card data={data} refreshData={refreshData}/>
+     </div>
     </>
   )
 }
