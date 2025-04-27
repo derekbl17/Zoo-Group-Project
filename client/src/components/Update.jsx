@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Swal from 'sweetalert2';
+import React, { useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Update = ({ onUpdate, initialData, onClose }) => {
   const [animalData, setAnimalData] = useState(initialData);
@@ -12,11 +12,15 @@ const Update = ({ onUpdate, initialData, onClose }) => {
       .put(`http://localhost:5000/updateAnimal/${initialData.id}`, animalData)
       .then(() => {
         onUpdate();
-        Swal.fire(`Successfully edited ${initialData.gyvūnoPav}!`, '', 'success');
+        Swal.fire(
+          `Successfully edited ${initialData.gyvūnoPav}!`,
+          "",
+          "success"
+        );
         onClose();
       })
       .catch((error) => {
-        console.error('Error updating animal:', error);
+        console.error("Error updating animal:", error);
       });
   };
 
@@ -24,16 +28,15 @@ const Update = ({ onUpdate, initialData, onClose }) => {
     const { name, value, type, checked } = e.target;
     setAnimalData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   return (
     <form onSubmit={handleSubmit} className="update-form">
       <h2>Edit Animal</h2>
-
-      <label>
-        Name:
+      <div className="row">
+        <label>Name:</label>
         <input
           type="text"
           name="gyvūnoPav"
@@ -41,10 +44,10 @@ const Update = ({ onUpdate, initialData, onClose }) => {
           onChange={handleChange}
           required
         />
-      </label>
+      </div>
 
-      <label>
-        Type:
+      <div className="row">
+        <label>Type:</label>
         <input
           type="text"
           name="rūšis"
@@ -52,10 +55,10 @@ const Update = ({ onUpdate, initialData, onClose }) => {
           onChange={handleChange}
           required
         />
-      </label>
+      </div>
 
-      <label>
-        Weight:
+      <div className="row">
+        <label>Weight:</label>
         <input
           type="number"
           name="svoris"
@@ -64,10 +67,10 @@ const Update = ({ onUpdate, initialData, onClose }) => {
           required
           step="any"
         />
-      </label>
+      </div>
 
-      <label>
-        Habitat:
+      <div className="row">
+        <label>Habitat:</label>
         <select
           name="aplinka"
           value={animalData.aplinka}
@@ -80,7 +83,7 @@ const Update = ({ onUpdate, initialData, onClose }) => {
           <option value="vanduo">Vanduo</option>
           <option value="po žeme">Po žeme</option>
         </select>
-      </label>
+      </div>
 
       <div className="row">
         <label>Lives in Lithuania:</label>
@@ -92,9 +95,9 @@ const Update = ({ onUpdate, initialData, onClose }) => {
         />
       </div>
 
-      <div style={{ marginTop: '1rem' }}>
+      <div style={{ marginTop: "1rem" }}>
         <button type="submit">Save</button>
-        <button type="button" onClick={onClose} style={{ marginLeft: '10px' }}>
+        <button type="button" onClick={onClose} style={{ marginLeft: "10px" }}>
           Cancel
         </button>
       </div>
