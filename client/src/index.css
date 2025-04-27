@@ -67,7 +67,7 @@ header{
 .addContainer{
   background-color: #9be1af;
 }
-form {
+.addContainer form {
   max-width: 500px;
   margin: 40px auto;
   padding: 30px;
