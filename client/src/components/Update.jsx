@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -10,9 +10,9 @@ const Update = ({ onUpdate, initialData, onClose }) => {
 
     axios
       .put(`http://localhost:5000/updateAnimal/${initialData.id}`, animalData)
-      .then((res) => {
+      .then(() => {
         onUpdate();
-        SuccessfullEdit(initialData.gyvūnoPav);
+        Swal.fire(`Successfully edited ${initialData.gyvūnoPav}!`, '', 'success');
         onClose();
       })
       .catch((error) => {
@@ -28,49 +28,60 @@ const Update = ({ onUpdate, initialData, onClose }) => {
     }));
   };
 
-  function SuccessfullEdit(gyvūnoPav){
-    Swal.fire(`Successfully edited ${gyvūnoPav}!`, '', 'success')
-
-  }
-
   return (
     <form onSubmit={handleSubmit} className="update-form">
-      <div className="row">
-        <label>Name:</label>
+      <h2>Edit Animal</h2>
+
+      <label>
+        Name:
         <input
           type="text"
           name="gyvūnoPav"
           value={animalData.gyvūnoPav}
           onChange={handleChange}
+          required
         />
-      </div>
-      <div className="row">
-        <label>Type:</label>
+      </label>
+
+      <label>
+        Type:
         <input
           type="text"
           name="rūšis"
           value={animalData.rūšis}
           onChange={handleChange}
+          required
         />
-      </div>
-      <div className="row">
-        <label>Weight:</label>
+      </label>
+
+      <label>
+        Weight:
         <input
           type="number"
           name="svoris"
           value={animalData.svoris}
           onChange={handleChange}
+          required
+          step="any"
         />
-      </div>
-      <div className="row">
-        <label>Habitat:</label>
-        <input
-          type="text"
+      </label>
+
+      <label>
+        Habitat:
+        <select
           name="aplinka"
           value={animalData.aplinka}
           onChange={handleChange}
-        />
-      </div>
+          required
+        >
+          <option value="">-- Pasirinkite aplinką --</option>
+          <option value="oras">Oras</option>
+          <option value="žemė">Žemė</option>
+          <option value="vanduo">Vanduo</option>
+          <option value="po žeme">Po žeme</option>
+        </select>
+      </label>
+
       <div className="row">
         <label>Lives in Lithuania:</label>
         <input
@@ -80,10 +91,13 @@ const Update = ({ onUpdate, initialData, onClose }) => {
           onChange={handleChange}
         />
       </div>
-      <button type="submit">Save</button>
-      <button type="button" onClick={onClose} style={{ marginLeft: '10px' }}>
-        Cancel
-      </button>
+
+      <div style={{ marginTop: '1rem' }}>
+        <button type="submit">Save</button>
+        <button type="button" onClick={onClose} style={{ marginLeft: '10px' }}>
+          Cancel
+        </button>
+      </div>
     </form>
   );
 };
