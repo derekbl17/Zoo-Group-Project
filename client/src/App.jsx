@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Create from "./components/Create";
 import Card from "./components/Card";
 
@@ -12,11 +14,11 @@ function App() {
   const [sortOrder, setSortOrder] = useState("asc");
 
   const refreshData = () => {
-    axios
-      .get("http://localhost:5000/getAnimals")
-      .then((res) => setData(res.data))
-      .catch((error) => console.log(error));
+    axios.get("http://localhost:5000/getAnimals")
+      .then(res => setData(res.data))
+      .catch(console.error);
   };
+
 
   useEffect(() => {
     refreshData();
@@ -49,10 +51,7 @@ function App() {
 
   return (
     <>
-      <header>
-        <h1>Zoo CRUD</h1>
-      </header>
-
+      <header/>
       <Create refreshData={refreshData} />
 
       {/* Filtrai ir paieška */}
@@ -66,10 +65,9 @@ function App() {
           margin: "1rem 0",
         }}
       >
-        {/* Aplinka */}
         <select
           value={habitatFilter}
-          onChange={(e) => setHabitatFilter(e.target.value)}
+          onChange={e => setHabitatFilter(e.target.value)}
         >
           <option value="">Visos aplinkos</option>
           <option value="oras">Oras</option>
@@ -78,12 +76,11 @@ function App() {
           <option value="po žeme">Po žeme</option>
         </select>
 
-        {/* Paieška pagal pavadinimą */}
         <input
           type="text"
           placeholder="Ieškoti pagal vardą..."
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={e => setSearchTerm(e.target.value)}
         />
 
         {/* Rūšis */}
@@ -119,9 +116,9 @@ function App() {
         </select>
       </div>
 
-      <div className="cardContainer">
-        <Card data={filteredData} refreshData={refreshData} />
-      </div>
+      <Card data={filteredData} refreshData={refreshData} />
+
+      <Footer />
     </>
   );
 }
